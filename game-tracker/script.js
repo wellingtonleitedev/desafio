@@ -1,5 +1,6 @@
 const jogosLista = document.getElementById("jogos-lista");
 const select = document.getElementById("sort");
+const search = document.getElementById("search");
 
 select.options[select.selectedIndex].classList.add('selected');
 
@@ -7,6 +8,18 @@ select.addEventListener('change', event => {
   document.querySelector('.selected').classList.remove('selected');
 
   select.options[select.selectedIndex].classList.add('selected');
+
+  sortBy[select.options[select.selectedIndex].value]();
+});
+
+search.addEventListener('input', () => {
+  newOfertas = ofertas.filter(item => {
+    if(search.value && item.title.toLocaleLowerCase().match(search.value.toLocaleLowerCase())){
+      return item;
+    }
+  });
+
+  addItemsToDom(newOfertas);
 });
 
 let ofertas = [
@@ -85,12 +98,51 @@ let ofertas = [
   },
 ];
 
-window.onload = () => {
-  jogosLista.innerHTML = "";
+const sortBy = {
+  percent: () => {
+    ofertas = ofertas.sort((itemA, itemB) => itemA.percent - itemB.percent);
+    addItemsToDom();
+  },
+  graterThan: () => {
+    ofertas = ofertas.sort((itemA, itemB) => {
+      if(parseFloat(itemA.salePrice.replace(',', '.')) > parseFloat(itemB.salePrice.replace(',', '.'))) return -1;
+    })
+    addItemsToDom();
+  },
+  lessThan: () => {
+    ofertas = ofertas.sort((itemA, itemB) => { 
+      if(parseFloat(itemA.salePrice.replace(',', '.')) < parseFloat(itemB.salePrice.replace(',', '.'))) return -1;
+    });
+    addItemsToDom();
+  },
+  title: () => {
+    ofertas = ofertas.sort((itemA, itemB) => {
+      if(itemA.title.toLocaleLowerCase() < itemB.title.toLocaleLowerCase()) return -1;
+      if(itemA.title.toLocaleLowerCase() > itemB.title.toLocaleLowerCase()) return 1;
+      return 0;
+    })
 
-  ofertas.map((oferta) => {
+    addItemsToDom();
+  },
+}
+
+async function calculatePercent() {
+  ofertas = ofertas.map((oferta) => {
     const percent = Math.round(oferta.salePrice.replace(',', '.') / oferta.normalPrice.replace(',', '.') * 100) - 100;
 
+    return {
+      ...oferta,
+      percent
+    }
+  });
+}
+
+function addItemsToDom (newOfertas = []) {
+  jogosLista.innerHTML = "";
+
+  items = newOfertas.length ? newOfertas : ofertas;
+
+  items.map((oferta) => {
     jogosLista.innerHTML += `
       <article class="oferta">
         <figure>
@@ -104,7 +156,7 @@ window.onload = () => {
                   <small class="preco-normal">$ ${oferta.normalPrice}</small>
                   <h5 class="preco-oferta">$ ${oferta.salePrice}</h5>
                 </div>
-                <span>${percent == -100 ? `GRÁTIS` : `${percent}%`}</span>
+                <span>${oferta.percent == -100 ? `GRÁTIS` : `${oferta.percent}%`}</span>
               </div>
             </section>
           </figcaption> 
@@ -112,4 +164,8 @@ window.onload = () => {
       </article>
       `;
   });
+}
+
+window.onload = () => {
+  calculatePercent().then(() => sortBy.percent());
 };

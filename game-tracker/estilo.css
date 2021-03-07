@@ -37,6 +37,7 @@ body > header {
 }
 
 body > h2 {
+  font-size: 36px;
   font-weight: 300;
   padding: 0 var(--margin-horizontal);
 }
@@ -123,7 +124,6 @@ main form fieldset select option.selected {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .oferta {
@@ -230,7 +230,9 @@ footer img {
 
 footer article {
   display: block;
-  margin: 33px auto 20px auto;
+  font-size: 14px;
+  font-weight: 300;
+  margin: 30px auto;
 }
 
 footer nav ul li {
@@ -240,27 +242,43 @@ footer nav ul li {
 }
 
 footer nav ul li + li {
-  margin-left: 46px;
+  margin-left: 40px;
 }
 
-@media screen and (min-width: 1720px) {
+@media screen and (min-width: 1701px) {
   :root {
     --largura: 24%;
     --margin-horizontal: 220px;
   }
+
+  .oferta:nth-child(even) {
+    margin: 0 auto 20px;
+  }
+
+  .oferta:nth-child(4n) {
+    margin-right: 0;
+  }
 }
 
-@media screen and (min-width: 1141px) and (max-width: 1719px) {
+@media screen and (min-width: 1141px) and (max-width: 1700px) {
   :root {
-    --largura: 32.3%;
-    --margin-horizontal: 130px;
+    --largura: 31.3%;
+    --margin-horizontal: 115px;
+  }
+
+  .oferta:nth-child(3n - 1) {
+    margin: 0 3% 20px;
   }
 }
 
 @media screen and (min-width: 769px) and (max-width: 1140px) {
   :root {
-    --largura: 49%;
-    --margin-horizontal: 80px;
+    --largura: 48%;
+    --margin-horizontal: 70px;
+  }
+
+  .oferta:nth-child(2n + 2) {
+    margin-left: auto;
   }
 }
 
@@ -309,6 +327,10 @@ footer nav ul li + li {
 
   .oferta figcaption {
     padding: 10px;
+  }
+
+  #carregar-mais {
+    max-width: 460px;
   }
 
   footer nav ul li {
