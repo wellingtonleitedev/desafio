@@ -1,4 +1,13 @@
 const jogosLista = document.getElementById("jogos-lista");
+const select = document.getElementById("sort");
+
+select.options[select.selectedIndex].classList.add('selected');
+
+select.addEventListener('change', event => {
+  document.querySelector('.selected').classList.remove('selected');
+
+  select.options[select.selectedIndex].classList.add('selected');
+});
 
 let ofertas = [
   {
@@ -80,22 +89,26 @@ window.onload = () => {
   jogosLista.innerHTML = "";
 
   ofertas.map((oferta) => {
+    const percent = Math.round(oferta.salePrice.replace(',', '.') / oferta.normalPrice.replace(',', '.') * 100) - 100;
+
     jogosLista.innerHTML += `
       <article class="oferta">
-        <header>
-          <h4>
-            ${oferta.title}
-          </h4>
-        </header>
-
         <figure>
           <img src="${oferta.thumb}" alt="${oferta.title}">
+          <figcaption>
+            <h4>${oferta.title}</h4>
+            <section>
+              <button>DETALHES</button>
+              <div>
+                <div>
+                  <small class="preco-normal">$ ${oferta.normalPrice}</small>
+                  <h5 class="preco-oferta">$ ${oferta.salePrice}</h5>
+                </div>
+                <span>${percent == -100 ? `GRÁTIS` : `${percent}%`}</span>
+              </div>
+            </section>
+          </figcaption> 
         </figure>
-
-        <section>
-          <small class="preco-normal">$ ${oferta.normalPrice}</small>
-          <h5 class="preco-oferta">$ ${oferta.salePrice}</h5>
-        </section> 
       </article>
       `;
   });

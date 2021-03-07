@@ -43,9 +43,39 @@
     <h2>Ofertas</h2>
 
     <main>
+      <form>
+        <input name="search" placeholder="Procurar">
+        <fieldset>
+          <label for="sort">Ordernar por:</label>
+          <select id="sort" name="ordernar">
+            <option value="porcetangem">% de Desconto</option>
+            <option value="maior">Maior preço</option>
+            <option value="menor">Menor preço</option>
+            <option value="title">Titulo</option>
+          </select>
+        </fieldset>
+      </form>
       <article id="jogos-lista"></article>
+      <button id="carregar-mais">Carregar mais</button>
     </main>
-
+    <footer>
+      <img src="assets/logo-icone.svg">
+      <article>
+        © 2021, Game Tracker Inc. Todos os direitos reservados. Nulla facilisi. Etiam sagittis congue tempor. Pellentesque
+        habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse eu velit et ante luctus
+        egestas. Aenean sed nisi tellus. Duis non ornare libero. Quisque suscipit maximus nisi, in gravida felis. Cras ornare
+        mauris ac nisi congue, ut condimentum sem tincidunt. Phasellus semper tellus malesuada turpis gravida cursus. Duis nec
+        eleifend nunc, vitae finibus elit. Aliquam eget diam vitae purus suscipit viverra.
+      </article>
+      <nav>
+        <ul>
+          <li>Termos de Serviço</li>
+          <li>Política de Privacidade</li>
+          <li>Trabalhe conosco</li>
+          <li>Contato</li>
+        </ul>
+      </nav>
+    </footer>
     <script src="script.js"></script>
   </body>
 </html>

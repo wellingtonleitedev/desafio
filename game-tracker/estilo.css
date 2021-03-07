@@ -9,6 +9,8 @@
   box-sizing: border-box;
   font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial,
     Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -23,8 +25,174 @@ body {
   color: var(--texto);
 }
 
-figure {
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body > header {
+  background-color: var(--primario);
+  margin-bottom: 45px;
+  padding: 10px var(--margin-horizontal);
+  width: 100%;
+}
+
+body > h2 {
+  font-weight: 300;
+  padding: 0 var(--margin-horizontal);
+}
+
+main {
+  padding: 0 var(--margin-horizontal);
+}
+
+main form {
+  align-items: flex-end;
+  display: flex;
+  justify-content: center;
+  margin: 22px auto 35px auto;
+}
+
+main form input {
+  margin-right: auto;
+  padding: 15px 0 15px 40px;
+  width: var(--largura);
+}
+
+main form input,
+main form fieldset select {
+  border: 0;
+  border-radius: 8px;
+  color: var(--texto);
+  outline: 0;
+  font-size: 18px;
+  font-weight: 200;
+  height: 50px;
+}
+
+main form input {
+  background: var(--primario) url("./assets/pesquisa.svg") 5% 50% no-repeat;
+  color: var(--texto);
+  padding: 15px 15px 15px 55px;
+}
+
+main form input::-webkit-input-placeholder {
+  color: var(--texto);
+}
+::-webkit-input-placeholder {
+  color: var(--texto);
+}
+main form input:-moz-placeholder {
+  color: var(--texto);
+}
+main form input:-ms-input-placeholder {
+  color: var(--texto);
+}
+
+main form fieldset {
+  align-items: center;
+  border: 0;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+main form fieldset label {
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+main form fieldset select {
+  background: var(--primario) url("./assets/baixo.svg") 95% 50% no-repeat;
+  color: var(--texto);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  padding: 15px 47px 15px 15px;
+}
+
+main form fieldset select option {
+  border: 0;
+}
+
+main form fieldset select option.selected {
+  color: var(--secundario);
+}
+
+#jogos-lista {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.oferta {
+  background-color: var(--primario);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  max-width: var(--largura);
+  width: 460px;
+}
+
+.oferta figure {
   margin: 0;
+}
+
+.oferta figure img {
+  border-radius: 8px 8px 0 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.oferta figcaption {
+  padding: 7px 16px 16px;
+}
+
+.oferta figcaption h4 {
+  font-weight: 300;
+  font-size: 24px;
+  margin-bottom: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.oferta figcaption section {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.oferta figcaption section button,
+.oferta figcaption section span {
+  border: 0;
+  border-radius: 8px;
+  color: var(--texto);
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px;
+  text-align: center;
+  outline: none;
+}
+
+.oferta figcaption section > button {
+  background-color: var(--secundario);
+}
+
+.oferta figcaption section > div {
+  align-items: center;
+  display: flex;
+}
+
+.oferta figcaption section div > div {
+  text-align: right;
+}
+
+.oferta figcaption section div span {
+  background-color: var(--sucesso);
+  margin-left: 10px;
+  width: 80px;
 }
 
 .preco-normal {
@@ -33,6 +201,125 @@ figure {
 }
 
 .preco-oferta {
-  margin: 4px 0;
-  font-size: 16pt;
+  font-size: 16px;
+}
+
+#carregar-mais {
+  background-color: var(--primario);
+  border: 0;
+  border-radius: 8px;
+  color: var(--texto);
+  display: block;
+  font-size: 18px;
+  font-weight: 200;
+  margin: 44px auto;
+  padding: 15px 0;
+  width: var(--largura);
+}
+
+footer {
+  background-color: var(--primario);
+  padding: 60px var(--margin-horizontal);
+}
+
+footer img {
+  color: var(--texto);
+  display: block;
+  margin: 0 auto;
+}
+
+footer article {
+  display: block;
+  margin: 33px auto 20px auto;
+}
+
+footer nav ul li {
+  display: inline-block;
+  font-weight: bold;
+  list-style: none;
+}
+
+footer nav ul li + li {
+  margin-left: 46px;
+}
+
+@media screen and (min-width: 1720px) {
+  :root {
+    --largura: 24%;
+    --margin-horizontal: 220px;
+  }
+}
+
+@media screen and (min-width: 1141px) and (max-width: 1719px) {
+  :root {
+    --largura: 32.3%;
+    --margin-horizontal: 130px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1140px) {
+  :root {
+    --largura: 49%;
+    --margin-horizontal: 80px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --largura: 100%;
+    --margin-horizontal: 10px;
+  }
+
+  header img {
+    display: block;
+    margin: auto;
+  }
+
+  body > h2 {
+    text-align: center;
+  }
+
+  main form {
+    max-width: 460px;
+  }
+
+  main form input {
+    padding: 15px 5px 15px 35px;
+    width: 48%;
+  }
+
+  main form fieldset {
+    flex-direction: column;
+  }
+
+  main form fieldset label {
+    margin: 0 auto 10px auto;
+    text-align: center;
+  }
+
+  main form fieldset select {
+    background: var(--primario) url("./assets/baixo.svg") 98% 50% no-repeat;
+    padding: 15px 30px 15px 10px;
+    width: 98%;
+  }
+
+  #jogos-lista {
+    flex-direction: column;
+  }
+
+  .oferta figcaption {
+    padding: 10px;
+  }
+
+  footer nav ul li {
+    display: block;
+    font-weight: bold;
+    list-style: none;
+    text-align: center;
+  }
+
+  footer nav ul li + li {
+    margin-top: 10px;
+    margin-left: 0px;
+  }
 }
