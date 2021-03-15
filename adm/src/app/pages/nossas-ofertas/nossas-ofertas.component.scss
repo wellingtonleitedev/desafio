@@ -4,6 +4,17 @@ section {
         max-width: 1200px;
         width: 100%;        
         
+        a {
+            background-color: #16857B;
+            border-radius: 8px;
+            color: #fff;
+            display: block;
+            margin: 0 0 20px auto;
+            padding: 15px;
+            text-decoration: none;
+            width: 73px;
+        }
+
         table {
             width: 100%;
             border: 1px solid #e0e0e0;
